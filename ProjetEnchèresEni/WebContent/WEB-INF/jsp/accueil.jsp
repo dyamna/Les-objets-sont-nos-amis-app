@@ -11,13 +11,13 @@
 <body>
 <header>
 
+
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand">Eni - Enchères</a>
     <form class="d-flex">
-      
-      <li class="nav-item"><a class="nav-link"
-				href="InscriptionServlet"> S'inscrire - Se connecter <span class="sr-only"></span> </a></li>         
+      <li class="nav justify-content-end"><a class="nav-link"
+		href="LoginServlet"> S'inscrire - Se connecter </a></li>         
     </form>
   </div>
 </nav>
@@ -25,7 +25,7 @@
 </header>
 
  <div class="welcome-text">
- <h2> Liste des Enchères</h2>
+ <h3 class="text-center"> Liste des Enchères</h3>
   
   <form>
   <div>
