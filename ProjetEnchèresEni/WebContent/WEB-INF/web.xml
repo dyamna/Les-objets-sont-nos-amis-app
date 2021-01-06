@@ -27,4 +27,16 @@
     <servlet-name>ServletAccueil</servlet-name>
     <url-pattern>/accueil</url-pattern>
   </servlet-mapping>
-</web-app>
+
+
+  <servlet>
+  <servlet-name>Login</servlet-name>
+  <servlet-class>fr.eni.ProjetEnchèresEni.servlets.LoginServlets</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  
+  <servlet-name>Login </servlet-name>
+  <url-pattern>/Login</url-pattern>
+  
+  </servlet-mapping>
+  </web-app>
