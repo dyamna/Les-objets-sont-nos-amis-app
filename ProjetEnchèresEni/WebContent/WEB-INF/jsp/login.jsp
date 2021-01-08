@@ -14,7 +14,7 @@
   <div class="container-fluid">
     <a class="navbar-brand">Eni - Enchères</a> 
     </div></nav>
-<form>
+<form method="POST" action="Login">
   <div class="form-group">
     <label for="exampleInputEmail1">Adresse mail</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
