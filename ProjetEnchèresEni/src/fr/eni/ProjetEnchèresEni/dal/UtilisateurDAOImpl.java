@@ -65,7 +65,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 						ps.setString(8,u.getVille());
 						ps.setString(9,u.getMotDePasse());
 						ps.setInt(10,u.getCredit());
-						ps.setBoolean(11,u.isAdministrateur());
+						ps.setBoolean(11,u.isAdmnistrateur());
 						ps.executeUpdate();
 						ResultSet rs= ps.getGeneratedKeys();
 						if(rs.next())

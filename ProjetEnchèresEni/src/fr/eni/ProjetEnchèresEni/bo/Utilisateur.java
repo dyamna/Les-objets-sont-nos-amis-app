@@ -5,7 +5,7 @@ public class Utilisateur {
 
 
 
-	private String noUtilisateur;
+	private int noUtilisateur;
 	private String pseudo;
 	private String nom;
 	private String prenom;
@@ -23,7 +23,7 @@ public class Utilisateur {
 	}
 	
 	//constructeur avec tous les attributs
-	public Utilisateur(String noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, int codePostal, String ville, String motDePasse, int credit, String utilisateur) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -40,13 +40,11 @@ public class Utilisateur {
 
 }
 
-	public String getNoUtilisateur() {
+	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
 
-	public void setNoUtilisateur(String noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
-	}
+
 
 	public String getPseudo() {
 		return pseudo;
@@ -128,9 +126,8 @@ public class Utilisateur {
 		this.credit = credit;
 	}
 
-	public String getUtilisateur() {
-		return utilisateur;
-	}
+	
+	
 
 	public void setUtilisateur(String utilisateur) {
 		this.utilisateur = utilisateur;
@@ -143,5 +140,32 @@ public class Utilisateur {
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", utilisateur=" + utilisateur + "]";
 	}
+
 	
-}
+	
+	
+
+	public void setNoUtilisateur(int u) {
+	
+		
+	}
+
+	public boolean isAdmnistrateur() {
+		
+		return false;
+	}
+
+	public boolean getAdministrateur() {
+		
+		return false;
+	}
+
+	
+
+	public void setAdministrateur(boolean boolean1) {
+		// TODO Auto-generated method stub
+		
+	}}
+	
+
+
