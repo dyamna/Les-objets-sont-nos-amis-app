@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+import com.sun.javafx.scene.control.skin.ButtonBarSkin;
+
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 
 public   class UtilisateurDAOImpl implements UtilisateurDAO{
@@ -49,7 +51,13 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-	public void insert(fr.eni.ProjetEnchèresEni.bo.Utilisateur u) {
+	public void insert(fr.eni.ProjetEnchèresEni.bo.Utilisateur u) throws BusinessException {
+		if (u==null)																//vérification si l'ibjet saisi est null
+		{
+			BusinessException businessException = new BusinessException();			// si oui, on lève une business exception
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL); 	//en envoyant un code INSERT_OBJET_NULL
+			throw businessException;
+		}
 		int status=0;
 		try {
 			con=ConnectionProvider.getCon();
@@ -73,9 +81,11 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 						u.setNoUtilisateur(rs.getInt(1));
 						}
 						}
-						catch(Exception e)
+						catch(Exception e)          //Block catch éxécuté si exception
 						{
-							System.out.println(e);
+							e.printStackTrace();    //Affichage dans la console l'erreur survenue
+							BusinessException businessException = new BusinessException();
+							//System.out.println(e);
 							
 						}
 							}
