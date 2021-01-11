@@ -1,11 +1,12 @@
 package fr.eni.ProjetEnchèresEni.dal;
 
+import fr.eni.PoolConnection.BusinessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 
-import com.sun.javafx.scene.control.skin.ButtonBarSkin;
+
+
 
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 
@@ -30,7 +31,13 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-	public boolean Select_all(Utilisateur u)  {
+	public boolean Select_all(Utilisateur u) throws BusinessException  {
+		if(u==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.OBJET_NULL);
+			throw businessException;}
+		
 			boolean status = false;
 			try(Connection con = ConnectionProvider.getConnection())
 			{
@@ -41,21 +48,28 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 			status = rs.next();
 
 			} catch(Exception e) 
+			{
 			
-	
+			e.printStackTrace();    //Affichage dans la console l'erreur survenue
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			//System.out.println(e);
+			
 			{
 
-			}
+			
+	}
 			return status;
 	}
-
+			return status;
+	}
 
 	@Override
 	public void insert(fr.eni.ProjetEnchèresEni.bo.Utilisateur u) throws BusinessException {
 		if (u==null)																//vérification si l'ibjet saisi est null
 		{
 			BusinessException businessException = new BusinessException();			// si oui, on lève une business exception
-			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL); 	//en envoyant un code INSERT_OBJET_NULL
+			businessException.ajouterErreur(CodesResultatDAL.OBJET_NULL); 	//en envoyant un code INSERT_OBJET_NULL
 			throw businessException;
 		}
 		int status=0;
@@ -85,6 +99,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 						{
 							e.printStackTrace();    //Affichage dans la console l'erreur survenue
 							BusinessException businessException = new BusinessException();
+							businessException.ajouterErreur(CodesResultatDAL.FIND_OBJET_NOTEXIST);
 							//System.out.println(e);
 							
 						}
@@ -95,7 +110,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-		public boolean findByPseudo (fr.eni.ProjetEnchèresEni.bo.Utilisateur u) {
+		public boolean findByPseudo (fr.eni.ProjetEnchèresEni.bo.Utilisateur u)throws BusinessException {
 			boolean exists = false;
 			try(Connection con = ConnectionProvider.getConnection())
 			{
@@ -113,10 +128,9 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-		public boolean findByEmail(fr.eni.ProjetEnchèresEni.bo.Utilisateur u) {
-			
-				boolean exists = false;
-				try(Connection con = ConnectionProvider.getConnection())
+		public boolean findByEmail(fr.eni.ProjetEnchèresEni.bo.Utilisateur u)throws BusinessException {
+			boolean exists = false;
+			try(Connection con = ConnectionProvider.getConnection())
 				{
 				PreparedStatement ps = con.prepareStatement(FIND_USER_BY_EMAIL);
 				ps.setString(1,u.getEmail());
@@ -125,6 +139,11 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 				}
 				catch(Exception e)
 				{
+					e.printStackTrace();    //Affichage dans la console l'erreur survenue
+					BusinessException businessException = new BusinessException();
+					businessException.ajouterErreur(CodesResultatDAL.FIND_EMAIL_NOTEXIST);
+					//System.out.println(e);
+					
 				}
 				return exists;
 				}
@@ -133,25 +152,36 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-	public void update(fr.eni.ProjetEnchèresEni.bo.Utilisateur user) {
+	public void update(fr.eni.ProjetEnchèresEni.bo.Utilisateur u)throws BusinessException {
+		if (u==null)																//vérification si l'ibjet saisi est null
+		{
+			BusinessException businessException = new BusinessException();			// si oui, on lève une business exception
+			businessException.ajouterErreur(CodesResultatDAL.OBJET_NULL); 	//en envoyant un code INSERT_OBJET_NULL
+			throw businessException;
+		}
 		try(Connection con = ConnectionProvider.getConnection())
 		{
 		PreparedStatement rqt = con.prepareStatement(UPDATE);
-		ps.setString(1, user.getPseudo());
-		ps.setString(2, user.getNom());
-		ps.setString(3, user.getPrenom());
-		ps.setString(4, user.getEmail());
-		ps.setString(5, user.getTelephone());
-		ps.setString(6, user.getRue());
-		ps.setInt(7, user.getCodePostal());
-		ps.setString(8, user.getVille());
-		ps.setString(9, user.getMotDePasse());
-		ps.setInt(10,user.getCredit());
-		ps.setInt(11, user.getNoUtilisateur());
+		ps.setString(1, u.getPseudo());
+		ps.setString(2, u.getNom());
+		ps.setString(3, u.getPrenom());
+		ps.setString(4, u.getEmail());
+		ps.setString(5, u.getTelephone());
+		ps.setString(6, u.getRue());
+		ps.setInt(7, u.getCodePostal());
+		ps.setString(8, u.getVille());
+		ps.setString(9, u.getMotDePasse());
+		ps.setInt(10,u.getCredit());
+		ps.setInt(11, u.getNoUtilisateur());
 		ps.executeUpdate();
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();    //Affichage dans la console l'erreur survenue
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.UPDATE_OBJET_ECHEC);
+			//System.out.println(e);
+			
 		}
 		}
 		
@@ -161,7 +191,13 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 
 
 	@Override
-	public void delete (fr.eni.ProjetEnchèresEni.bo.Utilisateur u) {
+	public void delete (fr.eni.ProjetEnchèresEni.bo.Utilisateur u)throws BusinessException {
+		if (u==null)																//vérification si l'ibjet saisi est null
+		{
+			BusinessException businessException = new BusinessException();			// si oui, on lève une business exception
+			businessException.ajouterErreur(CodesResultatDAL.OBJET_NULL); 	//en envoyant un code INSERT_OBJET_NULL
+			throw businessException;
+		}
 		
 			try(Connection con = ConnectionProvider.getConnection())
 			{
@@ -171,6 +207,10 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 			}
 			catch(Exception e)	
 			{
+				e.printStackTrace();    //Affichage dans la console l'erreur survenue
+				BusinessException businessException = new BusinessException();
+				businessException.ajouterErreur(CodesResultatDAL.DELETE_OBJET_ECHEC);
+				//System.out.println(e);
 			}
 			
 
@@ -184,7 +224,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 	
 
 	@Override
-	public fr.eni.ProjetEnchèresEni.bo.Utilisateur findById(int id){
+	public fr.eni.ProjetEnchèresEni.bo.Utilisateur findById(int id)throws BusinessException{
 	fr.eni.ProjetEnchèresEni.bo.Utilisateur u= new fr.eni.ProjetEnchèresEni.bo.Utilisateur();
 	try(Connection con = ConnectionProvider.getConnection())
 	{
@@ -212,9 +252,16 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 	
 	
 	{
+		e.printStackTrace();    //Affichage dans la console l'erreur survenue
+		BusinessException businessException = new BusinessException();
+		businessException.ajouterErreur(CodesResultatDAL.FIND_ID_NOTEXIST);
+		//System.out.println(e);
+		
 	}
 	return u;
 	}
+
+	
 
 
 	@Override

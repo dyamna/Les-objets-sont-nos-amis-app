@@ -1,14 +1,20 @@
 //Code erreurs DAL	
         10000=l'objet est null
         10001=Echec d'ajout de l'objet
-	10002=L'objet n'existe pas
-	10003=Echec de la mise à jour de l'objet
-	10004=Echec de la suppression de l'objet
+	10002=L'objet ID n'existe pas 
+	10003=L'objet Email n'existe pas 
+	10004=Echec de la mise à jour de l'objet
+	10005=Echec de la suppression de l'objet
 //Codes erreurs BLL
-	20000=Ce pseudo existe déjà
-	20001=Cet email existe déjà
-	20002=Le pseudo n'existe pas
-	20003=Erreur lors de la connexion, veuillez vérifier vos identifiants de connexion
+	20000= Echec quand le pseudo de utilisateur ne repsecte pas les règles définies
+	20001=Echec quand l'email de Utilisateur ne repsecte pas les règles définies
+	20002=Echec quand le nom de Utilisateur ne repsecte pas les règles définies
+	20003=Echec quand le prénom de Utilisateur ne repsecte pas les règles définies
+	20004= Echec quand le téléphone de Utilisateur ne repsecte pas les règles définies
+	20005=Echec quand la rue de Utilisateur ne repsecte pas les règles définies
+	20006=Echec quand la ville de Utilisateur ne repsecte pas les règles définies
+	20007=Echec quand le code postal de Utilisateur ne repsecte pas les règles définies
+	20008=Echec quand le MDP de Utilisateur ne repsecte pas les règles définies
 //Codes erreurs IHM
 	30000=Veuillez saisir une adresse mail
 	30001=Veuillez saisir une adresse mail valide
