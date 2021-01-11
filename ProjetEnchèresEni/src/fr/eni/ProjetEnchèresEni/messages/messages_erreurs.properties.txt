@@ -1,5 +1,5 @@
 //Code erreurs DAL	
-        10000=l'objet est vide
+        10000=l'objet est null
         10001=Echec d'ajout de l'objet
 	10002=L'objet n'existe pas
 	10003=Echec de la mise à jour de l'objet
