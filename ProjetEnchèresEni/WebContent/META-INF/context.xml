@@ -5,7 +5,7 @@
     name="jdbc/pool_cnx"
        type="javax.sql.DataSource" 
        username="userBDD" 
-       password="Password" 
+       password="Passw0rd" 
        driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
        url="jdbc:sqlserver://localhost;databasename=ENCHERES" 
        maxTotal="100" 
