@@ -62,7 +62,7 @@
 
       <label for="Pseudo">Pseudo :</label>
 
-      <input type="text" class="form-control" id="Pseudo" placeholder="Votre pseudonyme">
+      <input type="text" name="Pseudo" class="form-control" id="Pseudo" placeholder="Votre pseudonyme">
 
     </div>
 
@@ -70,7 +70,7 @@
 
     <label for="Nom">Nom :</label>
 
-      <input type="text" class="form-control" id="Nom" placeholder="Votre nom">
+      <input type="text" name="Nom" class="form-control" id="Nom" placeholder="Votre nom">
 
     </div>
 
@@ -82,7 +82,7 @@
 
       <label for="Prenom">Prénom :</label>
 
-      <input type="text" class="form-control" id="Prenom" placeholder="Votre prénom">
+      <input type="text" name="Prenom" class="form-control" id="Prenom" placeholder="Votre prénom">
 
     </div>
 
@@ -90,7 +90,7 @@
 
       <label for="Email">E-mail :</label>
 
-      <input type="text" class="form-control" id="Email" placeholder="Votre e-mail">
+      <input type="text" name="Email" class="form-control" id="Email" placeholder="Votre e-mail">
 
     </div>
 
@@ -102,7 +102,7 @@
 
       <label for="Telephone">Téléphone :</label>
 
-      <input type="text" class="form-control" id="Telephone" placeholder="Votre téléphone">
+      <input type="text" name="Telephone" class="form-control" id="Telephone" placeholder="Votre téléphone">
 
     </div>
 
@@ -110,7 +110,7 @@
 
       <label for="Rue">Rue :</label>
 
-      <input type="text" class="form-control" id="Rue" placeholder="Rue">
+      <input type="text" name="Rue" class="form-control" id="Rue" placeholder="Rue">
 
     </div>
 
@@ -122,7 +122,7 @@
 
       <label for="CP">Code postal :</label>
 
-      <input type="text" class="form-control" id="CP" placeholder="Code postal">
+      <input type="text" name="codePostal" class="form-control" id="CP" placeholder="Code postal">
 
     </div>
 
@@ -130,7 +130,7 @@
 
       <label for="Ville">Ville :</label>
 
-      <input type="text" class="form-control" id="Ville" placeholder="Ville">
+      <input type="text" name="Ville" class="form-control" id="Ville" placeholder="Ville">
 
     </div>
 
@@ -142,7 +142,7 @@
 
       <label for="MDP">Mot de passe :</label>
 
-      <input type="text" class="form-control" id="MDP" placeholder="Mot de passe">
+      <input type="text" name="MotDePasse" class="form-control" id="MDP" placeholder="Mot de passe">
 
     </div>
 
@@ -150,7 +150,7 @@
 
       <label for="Confirm">Confirmation :</label>
 
-      <input type="text" class="form-control" id"Confirm" placeholder="Confirmer le mot de passe">
+      <input type="text" name="Confirm" class="form-control" id"Confirm" placeholder="Confirmer le mot de passe">
 
     </div>
 
@@ -162,7 +162,7 @@
 
     <input class="btn btn-outline-secondary btn-lg shadow mx-3" type="submit" value="Créer">
 
-    <input class="btn btn-outline-secondary btn-lg shadow mx-3" type="reset" value="Annuler">
+    <a class="btn btn-outline-secondary btn-lg shadow mx-3" role="button" href="/ProjetEnchèresEni/">Annuler</a>
 
     </div>
 
