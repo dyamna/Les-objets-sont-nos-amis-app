@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.PoolConnexion.BusinessException;
 import fr.eni.ProjetEnchèresEni.bll.UtilisateurManager;
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAO;
@@ -29,12 +30,12 @@ public class InscriptionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+	/**	'
 		UtilisateurManager um = new UtilisateurManager();
 		List<Utilisateur> listeUtilisateur = um.selectionnerListeUtilisateur();
 		
 		request.setAttribute("listeUtilisateur", listeUtilisateur);
-		
+		**/
 		this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 		
 		
@@ -53,8 +54,9 @@ public class InscriptionServlet extends HttpServlet {
 	String telephone =request.getParameter("Telephone");
 	String rue =request.getParameter("Rue");
 	String ville =request.getParameter("Ville");
-	String mdp =request.getParameter("MDP");
-	String confirmation =request.getParameter("Confirm");
+	int codePostal =35310;
+	String mdp =request.getParameter("MotDePasse");
+	//String confirmation =request.getParameter("Confirm");
 	
 	System.out.println("Pseudo");
 	System.out.println("Nom");
@@ -63,15 +65,25 @@ public class InscriptionServlet extends HttpServlet {
 	System.out.println("Telephone");
 	System.out.println("Rue");
 	System.out.println("Ville");
+	System.out.println("codePostal");
 	System.out.println("MDP");
-	System.out.println("Confirm");
+	//System.out.println("Confirm");
 	
 	
-	request.setAttribute("Nom", nom);
-	
-	
+	UtilisateurManager utililisateurManager = new UtilisateurManager();
+    Utilisateur u = null;
+    try {
+        u = utililisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp);
+    }
+    catch (BusinessException e) {
+    
+        e.printStackTrace();
+    }
+
+
 	this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
-	
+	}
+}
 	/** Condition d'utilisation d'un pseudo et e-mail unique
 	
 				Utilisateur unUtilisateur = null;
@@ -94,8 +106,7 @@ public class InscriptionServlet extends HttpServlet {
 						}
 		***/
 				
-		}
-
+	
 		
-	}
+
 
