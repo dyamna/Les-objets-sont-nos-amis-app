@@ -21,7 +21,7 @@ public class UtilisateurManager {
 	public Utilisateur insert(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			int codePostal, String ville, String motDePasse) throws BusinessException {
 		BusinessException exception = new BusinessException();
-
+//change
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
 				motDePasse);
 
