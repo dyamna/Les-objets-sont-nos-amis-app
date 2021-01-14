@@ -31,7 +31,7 @@
 
   <servlet>
   <servlet-name>Login</servlet-name>
-  <servlet-class>fr.eni.ProjetEnchèresEni.servlets.LoginServlets</servlet-class>
+  <servlet-class>fr.eni.ProjetEnchèresEni.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   
