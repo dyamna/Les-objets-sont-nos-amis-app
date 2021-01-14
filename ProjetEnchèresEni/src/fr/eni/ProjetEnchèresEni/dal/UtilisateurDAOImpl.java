@@ -14,7 +14,7 @@ public   class UtilisateurDAOImpl implements UtilisateurDAO{
 
 private static final String INSERT="INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 private static final String DELETE="DELETE * FROM  UTILISATEURS WHERE no_utilisateur=?";
-private static final String SELECT_ALL_FROM = "SELECT * FROM UTILISATEURS";// WHERE (pseudo=? or email=?) AND mot_de_passe=?";
+private static final String SELECT_ALL_FROM = "SELECT * FROM UTILISATEURS WHERE (pseudo=? or email=?) AND mot_de_passe=?";
 private static final String FIND_USER_BY_ID="SELECT * FROM UTILISATEURS WHERE no_utilisateur=?";
 private static final String FIND_USER_BY_PSEUDO="SELECT * FROM UTILISATEURS WHERE pseudo=?";
 private static final String FIND_USER_BY_EMAIL="SELECT * FROM UTILISATEURS WHERE email=?";
@@ -30,14 +30,11 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		try(Connection con = ConnectionProvider.getConnection())
 		{
 		PreparedStatement ps = con.prepareStatement(SELECT_ALL_FROM);
-	//	ps.setString(1, identifiant);
-	//	ps.setString(2, identifiant);
-	//	ps.setString(3,motDePasse);
+		ps.setString(1, identifiant);
+		ps.setString(2, identifiant);
+		ps.setString(3,motDePasse);
 		ResultSet rs = ps.executeQuery();
-		while(rs.next())
-		{
-			System.out.println(rs.getString(2));
-		}
+		
 		status = rs.next();
 
 		} catch(Exception e) 
@@ -91,7 +88,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 						ps.setString(4,u.getEmail());
 						ps.setString(5,u.getTelephone());
 						ps.setString(6,u.getRue());
-						ps.setString(7,u.getCodePostal());
+						ps.setString(7,u.getCodePostal()+"");
 						ps.setString(8,u.getVille());
 						ps.setString(9,u.getMotDePasse());
 						ps.setInt(10,u.getCredit());
@@ -165,7 +162,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		ps.setString(4, user.getEmail());
 		ps.setString(5, user.getTelephone());
 		ps.setString(6, user.getRue());
-		ps.setString(7, user.getCodePostal());
+		ps.setString(7, user.getCodePostal()+"");
 		ps.setString(8, user.getVille());
 		ps.setString(9, user.getMotDePasse());
 		ps.setInt(10,user.getCredit());
@@ -235,6 +232,13 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 	{
 	}
 	return u;
+	}
+
+
+	@Override
+	public Utilisateur getUtilisateur(String uNo, String password) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
