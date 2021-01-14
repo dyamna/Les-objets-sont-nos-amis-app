@@ -1,28 +1,37 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+<!-- vro/page principale-- -->
+
+<!DOCTYPE html>
+<title>Espace Personnel</title>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Eni - Enchères</title>
-</head>
 <body>
-<header>
+	
+
+	<%@include file="/WEB-INF/jsp/navbarre.jsp"%>
 
 
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">Eni - Enchères</a>
-    <form class="d-flex">
-      <li class="nav justify-content-end"><a class="nav-link"
-		href="Login"> S'inscrire - Se connecter </a></li>         
-    </form>
-  </div>
-</nav>
- 
-</header>
+	<div class="row justify-content-center">
+
+		<div class="col-md-6">
+			<div class="card">
+				<header class="card-header">
+					<c:if test="${!empty sessionScope.sessionUtilisateur}">
+						<h4 class="float-right btn btn-outline-primary mt-1">${sessionScope.sessionUtilisateur.pseudo}
+							Connecté</h4>
+					</c:if>
+					<c:if test="${empty sessionScope.sessionUtilisateur}">
+						<h4 class="float-right btn btn-outline-primary mt-1">Vous
+							n'êtes pas connecté</h4>
+					</c:if>
+
+				</header>
+
+
 
  <div class="welcome-text">
  <h3 class="text-center"> Liste des Enchères</h3>

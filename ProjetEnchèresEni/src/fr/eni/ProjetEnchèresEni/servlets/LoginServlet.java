@@ -15,7 +15,7 @@ import fr.eni.ProjetEnchèresEni.bll.CodesResultatBLL;
 import fr.eni.ProjetEnchèresEni.bll.UtilisateurManager;
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAO;
-import fr.eni.ProjetEnchèresEni.ihm.CodesResultatihm;
+//import fr.eni.ProjetEnchèresEni.ihm.CodesResultatihm;
 
 
 public class LoginServlet extends HttpServlet {
@@ -31,13 +31,14 @@ public class LoginServlet extends HttpServlet {
 
 		
 		
-		if(session.getAttribute("isConnectewwwww")==null)
+		if(session.getAttribute("isConnecte")==null)
 		{
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward( request,  response);
 		}
 		else
 		{
 			response.sendRedirect(request.getContextPath()+"/ServletAccueil");
+		
 		}
 	}
 	
@@ -62,9 +63,10 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("identifiant", identifiant);
 			//	session.setAttribute( "pseudo", utilisateur.getPseudo() );
 			//	session.setAttribute( "isAdministrateur", utilisateur.isAdmnistrateur() );
-				session.setAttribute( "succes", "Vous êtes connecté");				
+				session.setAttribute( "succes", "Vous êtes connecté");
+				System.out.println("Vous êtes connectés");
 				
-				response.sendRedirect(request.getContextPath()+"/WEB-INF/accueil.jsp");				
+				response.sendRedirect(request.getContextPath()+"/HomePage");				
 			}
 			else
 			{
