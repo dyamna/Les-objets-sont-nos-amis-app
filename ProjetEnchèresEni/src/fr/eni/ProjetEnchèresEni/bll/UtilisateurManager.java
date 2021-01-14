@@ -3,6 +3,7 @@ package fr.eni.ProjetEnchèresEni.bll;
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 import fr.eni.ProjetEnchèresEni.dal.DAOFactory;
 import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAO;
+import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAOImpl;
 import fr.eni.PoolConnexion.BusinessException;
 import fr.eni.ProjetEnchèresEni.bll.CodesResultatBLL;
 
@@ -19,7 +20,7 @@ public class UtilisateurManager {
 	}
 
 	public Utilisateur insert(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			int codePostal, String ville, String motDePasse) throws BusinessException {
+			String codePostal, String ville, String motDePasse) throws BusinessException {
 		BusinessException exception = new BusinessException();
 //change
 		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
@@ -34,6 +35,8 @@ public class UtilisateurManager {
 		this.validerCodePostal(utilisateur, exception);
 		this.validerVille(utilisateur, exception);
 		this.validerMotDePasse(utilisateur, exception);
+	
+
 
 		if (!exception.hasErreurs()) {
 			this.UtilisateurDAO.insert(utilisateur);
@@ -43,6 +46,12 @@ public class UtilisateurManager {
 			throw exception;
 		}
 		return utilisateur;
+	}
+
+	public boolean validerUtilisateur(String identifiant,String motDePasse) 
+	{
+		return new UtilisateurDAOImpl().loginUtilisateur(identifiant, motDePasse);
+		
 	}
 
 	private void valider(Utilisateur utilisateur, BusinessException businessException) {
@@ -111,4 +120,27 @@ public class UtilisateurManager {
 			businessException.ajouterErreur(CodesResultatBLL.REGLE_UTILISATEUR_MDP_ERREUR);
 		}
 	}
-}
+
+	public static UtilisateurManager getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getHashFromPassword(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+
+	public static Utilisateur connexionUtilisateur(String identifiant, String motDePasse) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	}
+
+	
+
