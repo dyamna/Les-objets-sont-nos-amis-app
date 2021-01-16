@@ -1,6 +1,7 @@
 package fr.eni.ProjetEnchèresEni.bll;
 
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
+import fr.eni.ProjetEnchèresEni.dal.CodesResultatDAL;
 import fr.eni.ProjetEnchèresEni.dal.DAOFactory;
 import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAO;
 import fr.eni.ProjetEnchèresEni.dal.UtilisateurDAOImpl;
@@ -23,8 +24,7 @@ public class UtilisateurManager {
 			String codePostal, String ville, String motDePasse) throws BusinessException {
 		BusinessException exception = new BusinessException();
 //change
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-				motDePasse);
+		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 
 		this.validerPseudo(utilisateur, exception);
 		this.validerNom(utilisateur, exception);
@@ -39,8 +39,9 @@ public class UtilisateurManager {
 
 
 		if (!exception.hasErreurs()) {
-			this.UtilisateurDAO.insert(utilisateur);
-		}
+	
+				this.UtilisateurDAO.insert(utilisateur);
+				} 
 
 		if (exception.hasErreurs()) {
 			throw exception;

@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="fr.eni.ProjetEnchèresEni.messages.LecteurMessages"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 
     pageEncoding="UTF-8"%>
@@ -53,6 +55,23 @@
 
 
 <div class="container">
+<%
+	List<Integer> listeCodesErreur = (List<Integer>) request.getAttribute("listeCodesErreur");
+	if(listeCodesErreur!=null)
+	{
+		%>
+
+		<p style="color:red;">Erreur, l'inscription ne peut pas être terminée :</p>
+	<%
+		for(int codeErreur: listeCodesErreur)
+	{
+			%>
+		<p><%=LecteurMessages.getMessageErreur(codeErreur) %></p>
+		
+		<%	
+	}
+	}
+		%>
 
 <form method="POST" action="inscription">
 
@@ -90,7 +109,7 @@
 
       <label for="Email">E-mail :</label>
 
-      <input type="text" name="Email" class="form-control" id="Email" placeholder="Votre e-mail">
+      <input type="email" name="Email" class="form-control" id="Email" placeholder="Votre e-mail">
 
     </div>
 
@@ -102,7 +121,7 @@
 
       <label for="Telephone">Téléphone :</label>
 
-      <input type="text" name="Telephone" class="form-control" id="Telephone" placeholder="Votre téléphone">
+      <input type="tel" name="Telephone" class="form-control" id="Telephone" placeholder="Votre téléphone">
 
     </div>
 
@@ -169,7 +188,7 @@
     </div>
 
  </form>
-
+</div>
 </main>
 
 </body>

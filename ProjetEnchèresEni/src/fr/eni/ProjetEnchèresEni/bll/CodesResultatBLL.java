@@ -39,5 +39,14 @@ public abstract class CodesResultatBLL {
 	 * Echec quand le MDP de Utilisateur ne repsecte pas les règles définies
 	 */
 	public static final int REGLE_UTILISATEUR_MDP_ERREUR = 20008;
+	/**
+	 * Echec mail déjà existant en BDD
+	 */
+	public static final int REGLE_UTISATEUR_MAIL_DEJA_EXISTANT = 20009;
+	/**
+	 * Echec pseudo déjà existant en BDD
+	 */
+	public static final int REGLE_UTISATEUR_PSEUDO_DEJA_EXISTANT = 20010;
+		
+	}
 
-}

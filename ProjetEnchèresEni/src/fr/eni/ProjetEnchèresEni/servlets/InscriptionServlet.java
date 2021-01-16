@@ -54,7 +54,7 @@ public class InscriptionServlet extends HttpServlet {
 	String telephone =request.getParameter("Telephone");
 	String rue =request.getParameter("Rue");
 	String ville =request.getParameter("Ville");
-	int codePostal =35310;
+	String codePostal ="35310";
 	String mdp =request.getParameter("MotDePasse");
 	//String confirmation =request.getParameter("Confirm");
 	
@@ -73,39 +73,30 @@ public class InscriptionServlet extends HttpServlet {
 	UtilisateurManager utililisateurManager = new UtilisateurManager();
     Utilisateur u = null;
     try {
-        u = utililisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp);
+
+		u = utililisateurManager.insert(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mdp);
+    }
+    catch (NumberFormatException e)
+    {
+    	List<Integer> listeCodesErreur=new ArrayList<>();
+    	listeCodesErreur.add(CodesResultatServlets.ECHEC_CREATION_UTILISATEUR);
+    	request.setAttribute("listeCodesErreur", listeCodesErreur);
     }
     catch (BusinessException e) {
-    
-        e.printStackTrace();
+    	//???
+    request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
+       
     }
+
 
 
 	this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
-}
-	/** Condition d'utilisation d'un pseudo et e-mail unique
+	}
 	
-				Utilisateur unUtilisateur = null;
-				boolean testPseudo, testEmail;
+	
 
-				testPseudo = UtilisateurDAO.verificationPseudo(request.getParameter("Pseudo"));
-				testEmail = UtilisateurDAO.verificationMail(request.getParameter("Mail"));
-				
-			
 
-				if (testPseudo == false) {
-					request.setAttribute("erreurPseudo", "Ce pseudo est déjà utilisé, veuillez en saisir un autre.");
-					this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);	
-					} else if(testEmail == false) {
-						request.setAttribute("erreurMail", "Ce mail est déjà utilisé, veuillez en saisir un autre.");
-						this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-						} else if (testPseudo==false){
-							request.setAttribute("erreurTel", "Ce numéro de téléphone est déjà utilisé, veuillez en saisir un autre.");
-							this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-						}
-		***/
-				
 	
 		
 

@@ -1,6 +1,7 @@
 package fr.eni.ProjetEnchèresEni.messages;
 
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 	
 
@@ -16,7 +17,8 @@ import java.util.ResourceBundle;
 		{
 			try
 			{
-				rb = ResourceBundle.getBundle("fr.eni.projetencheres.messages.messages_erreur");
+				Locale currentLocale = Locale.getDefault();
+				rb = ResourceBundle.getBundle("messages_erreur");
 			}
 			catch (Exception e) 
 			{

@@ -3,8 +3,14 @@ package fr.eni.ProjetEnchèresEni.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.eclipse.jdt.internal.compiler.ast.ThrowStatement;
+
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import fr.eni.PoolConnexion.BusinessException;
+import fr.eni.ProjetEnchèresEni.bll.CodesResultatBLL;
 import fr.eni.ProjetEnchèresEni.bo.Utilisateur;
 
 public   class UtilisateurDAOImpl implements UtilisateurDAO{
@@ -25,6 +31,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 	static Connection con;
 	static PreparedStatement ps;
 	
+	@Override
 	public boolean loginUtilisateur(String identifiant,String motDePasse )  {
 		boolean status = false;
 		try(Connection con = ConnectionProvider.getConnection())
@@ -38,14 +45,11 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		status = rs.next();
 
 		} catch(Exception e) 
-		
-
 		{
-
+			e.printStackTrace(); 
 		}
 		return status;
 }
-
 
 	@Override
 	public boolean Select_all(Utilisateur u)  {
@@ -63,7 +67,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 			
 	
 			{
-
+				e.printStackTrace(); 
 			}
 			return status;
 	}
@@ -100,12 +104,20 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 						u.setNoUtilisateur(rs.getInt(1));
 						}
 						}
+						catch (SQLServerException e) {
+							if (e.getMessage().contains("UN_EMAIL")) {
+								throw new BusinessException(CodesResultatDAL.DOUBLE_MAIL);
+							}
+							if (e.getMessage().contains("UN_PSEUDO")) {
+								throw new BusinessException(CodesResultatDAL.DOUBLE_PSEUDO);
+							}
+							e.printStackTrace();    
+							throw new BusinessException();
+						}
 						catch(Exception e)          //Block catch éxécuté si exception
 						{
 							e.printStackTrace();    //Affichage dans la console l'erreur survenue
-							BusinessException businessException = new BusinessException();
-							//System.out.println(e);
-							
+							throw new BusinessException();					
 						}
 							}
 		
@@ -124,6 +136,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 			exists = rs.next();
 			}
 			catch (Exception e) {
+				e.printStackTrace(); 
 			}
 			return exists;
 			
@@ -144,6 +157,7 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 				}
 				catch(Exception e)
 				{
+					e.printStackTrace(); 
 				}
 				return exists;
 				}
@@ -171,13 +185,10 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace(); 
 		}
 		}
 		
-		
-	
-
-
 
 	@Override
 	public void delete (fr.eni.ProjetEnchèresEni.bo.Utilisateur u) {
@@ -190,18 +201,11 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 			}
 			catch(Exception e)	
 			{
+				e.printStackTrace(); 
 			}
-			
-
-
-		
-		
+				
 }	
-	
-
-
-	
-
+		
 	@Override
 	public fr.eni.ProjetEnchèresEni.bo.Utilisateur findById(int id){
 	fr.eni.ProjetEnchèresEni.bo.Utilisateur u= new fr.eni.ProjetEnchèresEni.bo.Utilisateur();
@@ -226,10 +230,9 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		}
 	}
 	
-	catch(Exception e)
-	
-	
+	catch(Exception e)	
 	{
+		e.printStackTrace(); 
 	}
 	return u;
 	}
@@ -240,7 +243,6 @@ private static final String UPDATE="UPDATE UTILISATEURS SET pseudo=?, nom=?, pre
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 
 	}

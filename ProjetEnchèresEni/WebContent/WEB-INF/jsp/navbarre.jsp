@@ -21,7 +21,7 @@
     <a class="nav-link" href="#">Mon Profil</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" href="DeconnexionServlet ">Déconnexion</a>
+    <a class="nav-link" href="#">Déconnexion</a>
   </li>
 </ul>
 </nav>
