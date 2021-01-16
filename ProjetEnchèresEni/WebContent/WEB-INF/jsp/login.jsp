@@ -17,7 +17,7 @@
 <form method="POST" action="Login">
   <div class="form-group">
     <label for="exampleIdentifiant">Identifiant</label>
-    <input name="identifiant" type="email" class="form-control" id="exampleInputIdentifiant" aria-describedby="identifiant" placeholder="Entrer votre identifiant">
+    <input name="identifiant" type="text" class="form-control" id="exampleInputIdentifiant" aria-describedby="identifiant" placeholder="Entrer votre identifiant">
     <small id="identifiant" class="form-text text-muted"></small>
   </div>
   <div class="form-group">
