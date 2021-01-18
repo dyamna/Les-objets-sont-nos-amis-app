@@ -18,10 +18,10 @@
     <a class="nav-link" href="#">Vendre un article</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Mon Profil</a>
+    <a class="nav-link" href="profil">Mon Profil</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" href="#">Déconnexion</a>
+    <a class="nav-link" href="DeconnexionServlet">Déconnexion</a>
   </li>
 </ul>
 </nav>
